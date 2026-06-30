@@ -5,7 +5,7 @@
 
 struct Node
 {
-    int data;
+    int info;
     struct Node *link;
 };
 
@@ -16,8 +16,8 @@ void insertFront()
     struct Node *newNode;
     newNode = (struct Node *)malloc(sizeof(struct Node));
 
-    printf("Enter data: ");
-    scanf("%d", &newNode->data);
+    printf("Enter info: ");
+    scanf("%d", &newNode->info);
 
     newNode->link = FIRST;
     FIRST = newNode;
@@ -29,8 +29,8 @@ void insertEnd()
 
     newNode = (struct Node *)malloc(sizeof(struct Node));
 
-    printf("Enter data: ");
-    scanf("%d", &newNode->data);
+    printf("Enter info: ");
+    scanf("%d", &newNode->info);
 
     newNode->link = NULL;
 
@@ -60,7 +60,7 @@ void display()
 
     while (temp != NULL)
     {
-        printf("%d -> ", temp->data);
+        printf("%d -> ", temp->info);
         temp = temp->link;
     }
     printf("NULL\n");
