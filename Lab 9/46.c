@@ -34,14 +34,14 @@ struct Node *reverse(struct Node *FIRST)
 {
     struct Node *prev = NULL;
     struct Node *curr = FIRST;
-    struct Node *link;
+    struct Node *next;
 
     while (curr != NULL)
     {
-        link = curr->link;
+        next = curr->link;
         curr->link = prev;
         prev = curr;
-        curr = link;
+        curr = next;
     }
 
     return prev;
