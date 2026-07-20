@@ -1,4 +1,3 @@
-// 6351028624 dhruv Limbasiya
 #include "stdio.h"
 #include "stdlib.h"
 #include "String.h"
@@ -8,7 +7,6 @@ char S[MAX];
 int TOP = -1;
 
 void push(char x);
-char pop();
 
 int main()
 {
