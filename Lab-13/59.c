@@ -1,88 +1,73 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "stdio.h"
+#include "stdlib.h"
+#include "String.h"
+#define MAX 50
 
-struct Node
-{
-    char info;
-    struct Node *link;
-};
+char S[MAX];
+int TOP = -1;
 
-struct Node *FIRST = NULL;
-
-void push(char ch)
-{
-    struct Node *newNode;
-
-    newNode = (struct Node *)malloc(sizeof(struct Node));
-
-    if (newNode == NULL)
+void push(char x)
+{ // insrt element at the top of stack
+    if (TOP >= MAX - 1)
     {
-        printf("Stack Overflow\n");
+        printf("OVERFLOW !!!");
         return;
     }
-
-    newNode->info = ch;
-    newNode->link = FIRST;
-    FIRST = newNode;
+    else
+    {
+        S[++TOP] = x;
+        return;
+    }
 }
 
 char pop()
-{
-    struct Node *temp;
-    char ch;
-
-    if (FIRST == NULL)
-        return '\0';
-
-    temp = FIRST;
-    ch = temp->info;
-    FIRST = FIRST->link;
-    free(temp);
-
-    return ch;
+{ // removes and returns the element at top of stack
+    if (TOP <= -1)
+    {
+        printf("UNDERFLOW !!!");
+        return -1;
+    }
+    else
+    {
+        return S[TOP--];
+    }
 }
 
-int isPalindrome(char str[])
+void disply_Stack()
 {
-    int len = strlen(str);
-    int i;
-
-    while (FIRST != NULL)
+    for (int i = 0; i <= TOP; i++)
     {
-        pop();
+        printf("%c\t", S[i]);
     }
-
-    for (i = 0; i < len / 2; i++)
-    {
-        push(str[i]);
-    }
-
-    if (len % 2 != 0)
-        i++;
-
-    while (i < len)
-    {
-        if (pop() != str[i])
-            return 0;
-
-        i++;
-    }
-
-    return 1;
+    printf("\n");
 }
 
 int main()
 {
-    char str[100];
+    int i = 0;
+    char str[20];
+    printf("Enter The String :");
+    gets(str);
+    // scanf("%s", str);
 
-    printf("Enter String: ");
-    scanf("%s", str);
+    char c = str[0];
+    while (c != 'c')
+    {
+        push(c);
+        c = str[++i];
+    }
 
-    if (isPalindrome(str))
-        printf("%s is Recognized (Palindrome)\n", str);
-    else
-        printf("%s is Not Recognized\n", str);
+    i++;
 
+    while (str[i] != '\0')
+    {
+
+        if (str[i++] != pop())
+        {
+            printf("Invalid String ");
+            return 0;
+        }
+    }
+    printf("Valid String ");
     return 0;
 }
