@@ -33,15 +33,6 @@ char pop()
     }
 }
 
-void disply_Stack()
-{
-    for (int i = 0; i <= TOP; i++)
-    {
-        printf("%c\t", S[i]);
-    }
-    printf("\n");
-}
-
 int main()
 {
     int i = 0;
